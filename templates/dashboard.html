@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Hotel Control Center</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+        .header {
+            background: #0284c7;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .section {
+            padding: 20px;
+            border-bottom: 1px solid #334155;
+        }
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .card {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-label { color: #94a3b8; font-size: 14px; }
+        .card-value { font-weight: bold; font-size: 18px; }
+        .badge-high { color: #f43f5e; }
+        .badge-medium { color: #f59e0b; }
+        .badge-low { color: #10b981; }
+        ol { margin: 0; padding-left: 20px; color: #e2e8f0; }
+        ol li { padding: 4px 0; font-size: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">SMART HOTEL CONTROL CENTER</div>
+
+    <!-- Overview Metrics -->
+    <div class="section">
+        <div class="section-title">System Overview & Risk Indicators</div>
+        <div class="grid">
+            <div class="card"><span class="card-label">Occupancy</span><span class="card-value">{{ occupancy }}</span></div>
+            <div class="card"><span class="card-label">Cyber Risk</span><span class="card-value badge-medium">{{ cyber_risk }}</span></div>
+            <div class="card"><span class="card-label">Operational Risk</span><span class="card-value badge-low">{{ operational_risk }}</span></div>
+            <div class="card"><span class="card-label">Equipment Risk</span><span class="card-value badge-high">{{ equipment_risk }}</span></div>
+        </div>
+    </div>
+
+    <!-- Security Module -->
+    <div class="section">
+        <div class="section-title">Security & Access Monitoring</div>
+        <div class="grid">
+            <div class="card"><span class="card-label">Failed logins</span><span class="card-value">{{ failed_logins }}</span></div>
+            <div class="card"><span class="card-label">Suspicious events</span><span class="card-value">{{ suspicious_events }}</span></div>
+            <div class="card"><span class="card-label" style="grid-column: span 2;">Critical alerts</span><span class="card-value badge-high">{{ critical_alerts }}</span></div>
+        </div>
+    </div>
+
+    <!-- Maintenance Module -->
+    <div class="section">
+        <div class="section-title">Maintenance & IoT Sensors</div>
+        <div class="grid">
+            <div class="card"><span class="card-label">High-risk equipment</span><span class="card-value badge-high">{{ high_risk_equipment }}</span></div>
+            <div class="card"><span class="card-label">Upcoming maintenance</span><span class="card-value">{{ upcoming_maintenance }}</span></div>
+        </div>
+    </div>
+
+    <!-- Analytics & Decision Support -->
+    <div class="section">
+        <div class="section-title">AI / Decision Support Engine</div>
+        <div class="card" style="margin-bottom: 15px;">
+            <span class="card-label">Predicted failures</span><span class="card-value">{{ predicted_failures }}</span>
+        </div>
+        
+        <div class="section-title" style="margin-top: 15px;">Top Recommended Actions</div>
+        <ol>
+            {% for action in top_actions %}
+                <li>{{ action }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>
